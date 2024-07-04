@@ -14,7 +14,7 @@ const provider = new PactV3({
   logLevel: "warn",
   dir: path.resolve(process.cwd(), "pacts"),
   spec: SpecificationVersion.SPECIFICATION_VERSION_V2,
-  host: "127.0.0.1"
+  host: "127.0.0.1",
 });
 
 describe("API Pact test", () => {
@@ -106,10 +106,10 @@ describe("API Pact test", () => {
 
         // make request to Pact mock server
         await expect(api.getAllProducts()).rejects.toThrow(
-          "Request failed with status code 401"
+          "Request failed with status code 401",
         );
       });
-    });    
+    });
   });
 
   describe("getting one product", () => {
@@ -174,7 +174,7 @@ describe("API Pact test", () => {
 
         // make request to Pact mock server
         await expect(api.getProduct("11")).rejects.toThrow(
-          "Request failed with status code 404"
+          "Request failed with status code 404",
         );
       });
     });
@@ -198,7 +198,7 @@ describe("API Pact test", () => {
 
         // make request to Pact mock server
         await expect(api.getProduct("10")).rejects.toThrow(
-          "Request failed with status code 401"
+          "Request failed with status code 401",
         );
       });
     });

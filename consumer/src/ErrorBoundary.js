@@ -30,9 +30,11 @@ export default class ErrorBoundary extends React.Component {
                 wordWrap: "break-word",
               }}
             >
-            <code>
-                {history && history.state && history.state.error ? history.state.error : "Oh noes"}
-            </code>
+              <code>
+                {history && history.state && history.state.error
+                  ? history.state.error
+                  : "Oh noes"}
+              </code>
             </pre>
           </div>
         </Layout>
@@ -43,5 +45,5 @@ export default class ErrorBoundary extends React.Component {
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
