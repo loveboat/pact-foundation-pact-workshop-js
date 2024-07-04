@@ -5,9 +5,13 @@
   "scripts": {
     "postinstall": "concurrently \"npm ci --prefix consumer\" \"npm ci --prefix provider\"",
     "start": "concurrently \"npm start --prefix consumer\" \"npm start --prefix provider\"",
-    "lint": "concurrently \"cd consumer/ && npx eslint .\" \"cd provider/ && npx eslint .\""
+    "lint": "concurrently \"cd consumer/ && npx eslint .\" \"cd provider/ && npx eslint .\"",
+    "format": "concurrently \"npx prettier --write consumer\" \"npx prettier --write provider\""
   },
   "dependencies": {
     "concurrently": "8.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.2"
   }
 }
