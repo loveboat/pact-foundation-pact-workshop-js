@@ -1,4 +1,4 @@
-const Product = require("./product");
+import Product from "./product.js";
 
 class ProductRepository {
   constructor() {
@@ -18,4 +18,4 @@ class ProductRepository {
   }
 }
 
-module.exports = ProductRepository;
+export default ProductRepository;

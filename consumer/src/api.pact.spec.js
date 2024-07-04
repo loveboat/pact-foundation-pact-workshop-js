@@ -106,7 +106,7 @@ describe("API Pact test", () => {
 
         // make request to Pact mock server
         await expect(api.getAllProducts()).rejects.toThrow(
-          "Request failed with status code 401",
+          "Request failed with status code 401"
         );
       });
     });
@@ -174,7 +174,7 @@ describe("API Pact test", () => {
 
         // make request to Pact mock server
         await expect(api.getProduct("11")).rejects.toThrow(
-          "Request failed with status code 404",
+          "Request failed with status code 404"
         );
       });
     });
@@ -198,7 +198,7 @@ describe("API Pact test", () => {
 
         // make request to Pact mock server
         await expect(api.getProduct("10")).rejects.toThrow(
-          "Request failed with status code 401",
+          "Request failed with status code 401"
         );
       });
     });

@@ -1,12 +1,15 @@
-const { Verifier } = require("@pact-foundation/pact");
-const controller = require("./product.controller");
-const Product = require("./product");
+import { Verifier } from "@pact-foundation/pact";
+import express from "express";
+import authMiddleware from "../middleware/auth.middleware.js";
+import { repository } from "./product.controller.js";
+import Product from "./product.js";
 
 // Setup provider server to verify
-const app = require("express")();
-const authMiddleware = require("../middleware/auth.middleware");
+const app = express();
+
 app.use(authMiddleware);
-app.use(require("./product.routes"));
+app.use(require("./product.routes").default);
+
 const server = app.listen("8080");
 
 describe("Pact Verification", () => {
@@ -27,21 +30,21 @@ describe("Pact Verification", () => {
       pactBrokerPassword: process.env.PACT_BROKER_PASSWORD || "pact_workshop",
       stateHandlers: {
         "product with ID 10 exists": () => {
-          controller.repository.products = new Map([
+          repository.products = new Map([
             ["10", new Product("10", "CREDIT_CARD", "28 Degrees", "v1")],
           ]);
         },
         "products exist": () => {
-          controller.repository.products = new Map([
+          repository.products = new Map([
             ["09", new Product("09", "CREDIT_CARD", "Gem Visa", "v1")],
             ["10", new Product("10", "CREDIT_CARD", "28 Degrees", "v1")],
           ]);
         },
         "no products exist": () => {
-          controller.repository.products = new Map();
+          repository.products = new Map();
         },
         "product with ID 11 does not exist": () => {
-          controller.repository.products = new Map();
+          repository.products = new Map();
         },
       },
       requestFilter: (req, res, next) => {
