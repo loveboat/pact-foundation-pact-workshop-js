@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Heading(props) {
   return (
@@ -7,8 +7,8 @@ function Heading(props) {
       <h1>
         <a
           style={{
-            textDecoration: "none",
-            color: "#635e5e",
+            textDecoration: 'none',
+            color: '#635e5e',
           }}
           href={props.href}
         >

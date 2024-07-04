@@ -1,16 +1,16 @@
-import React from "react";
-import "spectre.css/dist/spectre.min.css";
-import "spectre.css/dist/spectre-icons.min.css";
-import "spectre.css/dist/spectre-exp.min.css";
-import Layout from "./Layout";
-import Heading from "./Heading";
-import API from "./api";
+import React from 'react';
+import 'spectre.css/dist/spectre.min.css';
+import 'spectre.css/dist/spectre-icons.min.css';
+import 'spectre.css/dist/spectre-exp.min.css';
+import Layout from './Layout';
+import Heading from './Heading';
+import API from './api';
 
 class ProductPage extends React.Component {
   constructor(props) {
     super(props);
 
-    const bits = window.location.pathname.split("/");
+    const bits = window.location.pathname.split('/');
 
     this.state = {
       loading: true,
@@ -31,7 +31,7 @@ class ProductPage extends React.Component {
       .catch(() => {
         history.pushState(
           { error: `product with ${this.state.product.id} could not be found` },
-          "productsError",
+          'productsError',
         );
         this.setState({ error: true });
       });
@@ -39,7 +39,7 @@ class ProductPage extends React.Component {
 
   render() {
     if (this.state.error) {
-      throw Error("unable to fetch product data");
+      throw Error('unable to fetch product data');
     }
     const productInfo = (
       <div>
@@ -55,10 +55,10 @@ class ProductPage extends React.Component {
         {this.state.loading ? (
           <div
             style={{
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
             className="loading loading-lg"
           />

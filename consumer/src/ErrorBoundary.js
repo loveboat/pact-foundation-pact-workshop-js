@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Layout from "./Layout";
-import Heading from "./Heading";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Layout from './Layout';
+import Heading from './Heading';
 
 export default class ErrorBoundary extends React.Component {
   state = { has_error: false };
@@ -19,21 +19,21 @@ export default class ErrorBoundary extends React.Component {
             <img
               className="column col-6"
               style={{
-                height: "100%",
+                height: '100%',
               }}
-              src={"/sad_panda.gif"}
+              src={'/sad_panda.gif'}
               alt="sad_panda"
             />
             <pre
               className="code column col-6"
               style={{
-                wordWrap: "break-word",
+                wordWrap: 'break-word',
               }}
             >
               <code>
                 {history && history.state && history.state.error
                   ? history.state.error
-                  : "Oh noes"}
+                  : 'Oh noes'}
               </code>
             </pre>
           </div>

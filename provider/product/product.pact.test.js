@@ -1,58 +1,58 @@
-import { Verifier } from "@pact-foundation/pact";
-import express from "express";
-import authMiddleware from "../middleware/auth.middleware.js";
-import { repository } from "./product.controller.js";
-import Product from "./product.js";
+import { Verifier } from '@pact-foundation/pact';
+import express from 'express';
+import authMiddleware from '../middleware/auth.middleware.js';
+import { repository } from './product.controller.js';
+import Product from './product.js';
 
 // Setup provider server to verify
 const app = express();
 
 app.use(authMiddleware);
-app.use(require("./product.routes").default);
+app.use(require('./product.routes').default);
 
-const server = app.listen("8080");
+const server = app.listen('8080');
 
-describe("Pact Verification", () => {
-  it("validates the expectations of ProductService", () => {
+describe('Pact Verification', () => {
+  it('validates the expectations of ProductService', () => {
     const opts = {
-      logLevel: "INFO",
-      providerBaseUrl: "http://127.0.0.1:8080",
-      provider: "ProductService",
-      providerVersion: "1.0.0",
-      providerVersionBranch: "test",
+      logLevel: 'INFO',
+      providerBaseUrl: 'http://127.0.0.1:8080',
+      provider: 'ProductService',
+      providerVersion: '1.0.0',
+      providerVersionBranch: 'test',
       consumerVersionSelectors: [
         {
           latest: true,
         },
       ],
-      pactBrokerUrl: process.env.PACT_BROKER_URL || "http://127.0.0.1:8000",
-      pactBrokerUsername: process.env.PACT_BROKER_USERNAME || "pact_workshop",
-      pactBrokerPassword: process.env.PACT_BROKER_PASSWORD || "pact_workshop",
+      pactBrokerUrl: process.env.PACT_BROKER_URL || 'http://127.0.0.1:8000',
+      pactBrokerUsername: process.env.PACT_BROKER_USERNAME || 'pact_workshop',
+      pactBrokerPassword: process.env.PACT_BROKER_PASSWORD || 'pact_workshop',
       stateHandlers: {
-        "product with ID 10 exists": () => {
+        'product with ID 10 exists': () => {
           repository.products = new Map([
-            ["10", new Product("10", "CREDIT_CARD", "28 Degrees", "v1")],
+            ['10', new Product('10', 'CREDIT_CARD', '28 Degrees', 'v1')],
           ]);
         },
-        "products exist": () => {
+        'products exist': () => {
           repository.products = new Map([
-            ["09", new Product("09", "CREDIT_CARD", "Gem Visa", "v1")],
-            ["10", new Product("10", "CREDIT_CARD", "28 Degrees", "v1")],
+            ['09', new Product('09', 'CREDIT_CARD', 'Gem Visa', 'v1')],
+            ['10', new Product('10', 'CREDIT_CARD', '28 Degrees', 'v1')],
           ]);
         },
-        "no products exist": () => {
+        'no products exist': () => {
           repository.products = new Map();
         },
-        "product with ID 11 does not exist": () => {
+        'product with ID 11 does not exist': () => {
           repository.products = new Map();
         },
       },
       requestFilter: (req, res, next) => {
-        if (!req.headers["authorization"]) {
+        if (!req.headers['authorization']) {
           next();
           return;
         }
-        req.headers["authorization"] = `Bearer ${new Date().toISOString()}`;
+        req.headers['authorization'] = `Bearer ${new Date().toISOString()}`;
         next();
       },
     };

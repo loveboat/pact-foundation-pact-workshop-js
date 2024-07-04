@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "spectre.css/dist/spectre.min.css";
-import "spectre.css/dist/spectre-icons.min.css";
-import "spectre.css/dist/spectre-exp.min.css";
-import Heading from "./Heading";
-import Layout from "./Layout";
-import API from "./api";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import 'spectre.css/dist/spectre.min.css';
+import 'spectre.css/dist/spectre-icons.min.css';
+import 'spectre.css/dist/spectre-exp.min.css';
+import Heading from './Heading';
+import Layout from './Layout';
+import API from './api';
+import PropTypes from 'prop-types';
 
 const productPropTypes = {
   product: PropTypes.shape({
@@ -25,7 +25,7 @@ function ProductTableRow(props) {
         <Link
           className="btn btn-link"
           to={{
-            pathname: "/products/" + props.product.id,
+            pathname: '/products/' + props.product.id,
             state: {
               product: props.product,
             },
@@ -67,7 +67,7 @@ class App extends React.Component {
 
     this.state = {
       loading: true,
-      searchText: "",
+      searchText: '',
       products: [],
       visibleProducts: [],
     };
@@ -85,8 +85,8 @@ class App extends React.Component {
       })
       .catch(() => {
         history.pushState(
-          { error: "products could not be found" },
-          "productsError",
+          { error: 'products could not be found' },
+          'productsError',
         );
         this.setState({ error: true });
       });
@@ -118,7 +118,7 @@ class App extends React.Component {
 
   render() {
     if (this.state.error) {
-      throw Error("unable to fetch product data");
+      throw Error('unable to fetch product data');
     }
 
     return (
